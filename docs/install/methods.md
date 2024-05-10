@@ -64,7 +64,7 @@ In order to use the RPM repository, on a CentOS or RHEL system, run the followin
 
 ```bash
 export RKE2_MINOR=28
-export LINUX_MAJOR=7 # or 8 or 9 etc
+export LINUX_MAJOR=$(cat /etc/redhat-release  |sed -nE  's#.* ([[:digit:]]+)\.[[:digit:]]+.*#\1#p') #7 # or 8 or 9 etc
 cat << EOF > /etc/yum.repos.d/rancher-rke2-1-${RKE2_MINOR}-latest.repo
 [rancher-rke2-common-latest]
 name=Rancher RKE2 Common Latest
